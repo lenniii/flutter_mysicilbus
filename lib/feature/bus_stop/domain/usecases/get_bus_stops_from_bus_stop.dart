@@ -14,19 +14,16 @@ class GetBusStopsFromBusStop implements UseCase<BusStopsList, Params> {
 
   @override
   Future<Either<Failure, BusStopsList>> call(Params params) {
-    return busStopListRepository.getBusStopsListFromBusStop(params.busStop);
+    return busStopListRepository.getBusStopsListFromBusStop(
+        params.busStop, params.dateTime);
   }
-}
-
-class NoParams extends Equatable {
-  @override
-  List<Object> get props => null;
 }
 
 class Params extends Equatable {
   final BusStop busStop;
+  final DateTime dateTime;
 
-  Params({@required this.busStop});
+  Params({@required this.busStop, @required this.dateTime});
   @override
-  List<Object> get props => [busStop];
+  List<Object> get props => [busStop, dateTime];
 }

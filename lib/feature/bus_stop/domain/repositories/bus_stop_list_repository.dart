@@ -6,5 +6,5 @@ import 'package:sicilbus_clean_arch/feature/bus_stop/domain/entities/bus_stop_li
 abstract class BusStopListRepository {
   Future<Either<Failure, BusStopsList>> getAllBusStops();
   Future<Either<Failure, BusStopsList>> getBusStopsListFromBusStop(
-      BusStop busStop);
+      BusStop busStop, DateTime dateTime);
 }

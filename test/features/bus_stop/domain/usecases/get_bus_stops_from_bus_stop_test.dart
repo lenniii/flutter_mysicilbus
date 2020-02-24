@@ -22,14 +22,16 @@ void main() {
   final testBusStopsList = BusStopsList(
       busStopList: [BusStop(id: 1, label: "TEST")], description: "TEST");
   final testBusStop = BusStop(id: 1, label: "TEST");
+  final testDateTime = DateTime.now();
   test('Should receive [BusStopsList] with given BusStop from Repository',
       () async {
-    when(busStopListRepository.getBusStopsListFromBusStop(any))
+    when(busStopListRepository.getBusStopsListFromBusStop(any, any))
         .thenAnswer((_) async => Right(testBusStopsList));
-    final expectedResult =
-        await busStopsFromBusStop(Params(busStop: testBusStop));
+    final expectedResult = await busStopsFromBusStop(
+        Params(busStop: testBusStop, dateTime: testDateTime));
     expect(expectedResult, Right(testBusStopsList));
-    verify(busStopListRepository.getBusStopsListFromBusStop(testBusStop));
+    verify(busStopListRepository.getBusStopsListFromBusStop(
+        testBusStop, testDateTime));
     verifyNoMoreInteractions(busStopListRepository);
   });
 }
